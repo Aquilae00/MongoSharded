@@ -45,5 +45,14 @@ spec:
           volumeMounts:
           - name: mongodbshardpvc
             mountPath: /data/db
-          
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodbshardpvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 20Gi
+  
           
