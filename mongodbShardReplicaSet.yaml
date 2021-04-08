@@ -8,3 +8,6 @@ metadata:
 spec:
   selector:
     role: mongoshard
+  ports:
+  - port: 27017
+    targetPort: 27017
