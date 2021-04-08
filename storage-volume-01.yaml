@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvcmongoc20gb-101
+  annotations:
+    volume.beta.kubernetes.io/storage-class: mongoshardsc
+  labels:
+    app: mongodb-shard-node01
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
