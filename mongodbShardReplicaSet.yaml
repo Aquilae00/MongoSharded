@@ -43,7 +43,7 @@ spec:
           ports:
           - containerPort: 27017
           volumeMounts:
-          - name: pvcmongoc20gb-101
+          - name: mongodbshardpvc
             mountPath: /data/db
           
           
