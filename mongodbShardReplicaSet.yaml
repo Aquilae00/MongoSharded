@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongodbshardstateful
+spec:
+  selector:
+    matchLabels:
+      role: mongoshard
+  serviceName: mongodbshardservice
+  replicas: 3
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        role: mongoshard
+        replicaset: mongoshards
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 50 #set to 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: replicaset
+                  operator: In
+                  values:
+                  - mongoshards
+              topologyKey: kubernetes.io/hostname
+      terminationGracePeriodSeconds: 10      
+      containers:
+        - name: mongodshardcontainer
+          image: mongo:3.6.2
+          command:
+            - "mongod"
+            - "--shardsvr"            
+            - "--replSet"
+            - "mongoreplicaset1shard"
+            - "--bind_ip_all"
+            - "--port"
+            - "27017"
+          ports:
+          - containerPort: 27017
+          volumeMounts:
+          - name: pvcmongoc20gb-101
+            mountPath: /data/db
+          
+          
