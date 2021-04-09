@@ -33,7 +33,7 @@ spec:
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
+          - weight: 50
             podAffinityTerm:
               labelSelector:
                 matchExpressions:
@@ -46,13 +46,6 @@ spec:
       containers:
         - name: mongosroutercontainer
           image: mongo:3.6.2
-          command:
-            - "mongos"
-            - "--configdb"            
-            - "mongoreplicaset1config/10.57.129.195:27017,10.57.129.131:27017,10.57.129.66:27017"
-            - "--bind_ip_all"
-            - "--port"
-            - "27017"
           ports:
             - containerPort: 27017
           volumeMounts:           
