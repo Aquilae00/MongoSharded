@@ -38,10 +38,6 @@ spec:
           volumeMounts:           
             - name: mongodbrouterpvc
               mountPath: /data/db
-          resources:
-            requests:
-              cpu: "2"
-              memory: "2Gi"
   volumeClaimTemplates:
   - metadata:
       name: mongodbrouterpvc
@@ -50,4 +46,4 @@ spec:
       storageClassName: standard
       resources:
         requests:
-          storage: 5Gi
+          storage: 1Gi
