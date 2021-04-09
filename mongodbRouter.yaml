@@ -48,6 +48,14 @@ spec:
           image: mongo:3.6.2
           ports:
             - containerPort: 27017
+          command:
+            - "mongod"
+            - "--configsvr"            
+            - "--replSet"
+            - "mongoreplicaset2config"
+            - "--bind_ip_all"
+            - "--port"
+            - "27017"
           volumeMounts:           
             - name: mongodbrouterpvc
               mountPath: /data/db
