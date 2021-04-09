@@ -56,3 +56,12 @@ spec:
             - "27017"
           ports:
             - containerPort: 27017
+  volumeClaimTemplates:
+  - metadata:
+      name: mongodbrouterpvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 2Gi
