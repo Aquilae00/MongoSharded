@@ -56,6 +56,3 @@ spec:
             - "27017"
           ports:
             - containerPort: 27017
-          volumeMounts:           
-            - name: mongodbrouterpvc
-              mountPath: /data/db]
