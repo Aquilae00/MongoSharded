@@ -33,6 +33,13 @@ spec:
       containers:
         - name: mongodroutercontainer
           image: mongo:3.6.2
+          command:
+            - "mongos"
+            - "--configdb"
+            - "mongoreplicaset1config/10.43.0.130:27017,10.43.1.66:27017,10.43.1.194:27017"
+            - "--bind_ip_all"
+            - "--port"
+            - "27017"
           ports:
             - containerPort: 27017
           volumeMounts:           
