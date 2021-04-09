@@ -7,7 +7,7 @@ spec:
     matchLabels:
       role: mongoshard
   serviceName: mongodbshardservice
-  replicas: 2
+  replicas: 3
   updateStrategy:
     type: RollingUpdate
   template:

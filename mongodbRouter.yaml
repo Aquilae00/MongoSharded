@@ -50,7 +50,7 @@ spec:
           command:
             - "mongos"
             - "--configdb"            
-            - "mongoreplicaset1config/mongodbconfigstateful-0.mongodbconfigservice.default.svc.cluster.local:27017,mongodbconfigstateful-1.mongodbconfigservice.default.svc.cluster.local:27017,mongodbconfigstateful-2.mongodbconfigservice.default.svc.cluster.local:27017"
+            - "mongoreplicaset1config/10.57.129.195:27017,10.57.129.131:27017,10.57.129.66:27017"
             - "--bind_ip_all"
             - "--port"
             - "27017"
@@ -59,16 +59,3 @@ spec:
           volumeMounts:           
             - name: mongodbrouterpvc
               mountPath: /data/db]
-      resources:
-        requests:
-          cpu: "2"
-          memory: "4Gi"
-  volumeClaimTemplates:
-  - metadata:
-      name: mongodbrouterpvc
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
-      resources:
-        requests:
-          storage: 2Gi
