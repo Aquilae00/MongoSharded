@@ -58,7 +58,11 @@ spec:
             - containerPort: 27017
           volumeMounts:           
             - name: mongodbrouterpvc
-              mountPath: /data/db
+              mountPath: /data/db]
+          resources:
+            requests:
+              cpu: "2"
+              memory: "4Gi"
   volumeClaimTemplates:
   - metadata:
       name: mongodbrouterpvc
