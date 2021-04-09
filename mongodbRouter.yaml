@@ -45,10 +45,6 @@ spec:
           volumeMounts:
           - name: mongodbshard2pvc
             mountPath: /data/db
-      resources:
-        requests:
-          cpu: "4"
-          memory: "6Gi"
   volumeClaimTemplates:
   - metadata:
       name: mongodbshard2pvc
