@@ -1,17 +1,17 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodbrouterservice
-  labels:
-    name: mongorouter
-spec:
-  ports:
-  - port: 27017
-    targetPort: 27017
-  selector:
-    role: mongorouter
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: mongodbrouterservice
+#   labels:
+#     name: mongorouter
+# spec:
+#   ports:
+#   - port: 27017
+#     targetPort: 27017
+#   selector:
+#     role: mongorouter
 
----
+# ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -64,7 +64,7 @@ spec:
       name: mongodbrouterpvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: standard
+      storageClassName: standard-rwo
       resources:
         requests:
           storage: 5Gi
