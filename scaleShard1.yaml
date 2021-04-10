@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongodbshardservice
+  name: mongodbshardservice2
   labels:
     name: mongoshard
 spec:
@@ -14,12 +14,12 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mongodbshardstateful
+  name: mongodbshardstateful2
 spec:
   selector:
     matchLabels:
       role: mongoshard
-  serviceName: mongodbshardservice
+  serviceName: mongodbshardservice2
   replicas: 3
   updateStrategy:
     type: RollingUpdate
@@ -27,7 +27,7 @@ spec:
     metadata:
       labels:
         role: mongoshard
-        replicaset: mongoshards
+        replicaset: mongoshards2
     spec:
       affinity:
         podAntiAffinity:
@@ -39,7 +39,7 @@ spec:
                 - key: replicaset
                   operator: In
                   values:
-                  - mongoshards
+                  - mongoshards2
               topologyKey: kubernetes.io/hostname
       terminationGracePeriodSeconds: 10      
       containers:
@@ -49,18 +49,18 @@ spec:
             - "mongod"
             - "--shardsvr"            
             - "--replSet"
-            - "mongoreplicaset1shard"
+            - "mongoreplicaset2shard"
             - "--bind_ip_all"
             - "--port"
             - "27017"
           ports:
           - containerPort: 27017
           volumeMounts:
-          - name: mongodbshardpvc
+          - name: mongodbshardpvc2
             mountPath: /data/db
   volumeClaimTemplates:
   - metadata:
-      name: mongodbshardpvc
+      name: mongodbshardpvc2
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: standard
