@@ -20,7 +20,7 @@ spec:
     matchLabels:
       role: mongoshard
   serviceName: mongodbshardservice2
-  replicas: 3
+  replicas: 1
   updateStrategy:
     type: RollingUpdate
   template:
