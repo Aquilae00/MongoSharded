@@ -59,7 +59,7 @@ spec:
           - name: mongodbshardpvc
             mountPath: /data/db
           resources:
-            limit:
+            limits:
               cpu: "1"
               memory: "200Mi"
             requests:
