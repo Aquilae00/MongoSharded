@@ -63,7 +63,7 @@ spec:
       name: mongodbshardpvc2
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: us-central1-b-sc
+      storageClassName: us-central1-b-sc1
       resources:
         requests:
           storage: 2Gi
