@@ -74,7 +74,7 @@ spec:
       name: mongodbconfigpvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: us-central1-c
+      storageClassName: us-central1-c-sc-1
       resources:
         requests:
           storage: 1Gi
