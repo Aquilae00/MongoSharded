@@ -45,6 +45,13 @@ spec:
           volumeMounts:           
             - name: mongodbrouterpvc
               mountPath: /data/db
+          resources:
+            limits:
+              cpu: "1"
+              memory: "200Mi"
+            requests:
+              cpu: "0.1"
+              memory: "100Mi"
   volumeClaimTemplates:
   - metadata:
       name: mongodbrouterpvc
