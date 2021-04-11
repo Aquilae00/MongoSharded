@@ -4,6 +4,10 @@ read configpod
 
 echo You selected $configpod
 
+echo Enter Replica set name:
+
+read replset
+
 declare -a config1pod
 
 
@@ -19,7 +23,7 @@ echo Adding replica hostnames to the config
 
 
 replicasetInit() {
-    kubectl exec ${configpod}-0 -c mongodconfigcontainer -- mongo --eval 'rs.initiate({_id:"mongoreplicaset1config",configsvr:true,members:[{_id:0,host:"'${config1pod[0]}':27017"},{_id:1,host:"'${config1pod[1]}':27017"},{_id:2,host:"'${config1pod[2]}':27017"}]})'
+    kubectl exec ${configpod}-0 -c mongodconfigcontainer -- mongo --eval 'rs.initiate({_id:"'$replset'",configsvr:true,members:[{_id:0,host:"'${config1pod[0]}':27017"},{_id:1,host:"'${config1pod[1]}':27017"},{_id:2,host:"'${config1pod[2]}':27017"}]})'
 }
 
 replicasetInit
