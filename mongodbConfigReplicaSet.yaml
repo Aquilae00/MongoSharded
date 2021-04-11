@@ -68,13 +68,13 @@ spec:
               memory: "100Mi"
       nodeSelector:
         failure-domain.beta.kubernetes.io/region: us-central1
-        failure-domain.beta.kubernetes.io/zone: us-central1-c
+        failure-domain.beta.kubernetes.io/zone: us-central1-b
   volumeClaimTemplates:
   - metadata:
       name: mongodbconfigpvc
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: us-central1-c-sc-1
+      storageClassName: us-central1-b-sc-1
       resources:
         requests:
           storage: 1Gi
