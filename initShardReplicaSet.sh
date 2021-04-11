@@ -8,5 +8,9 @@ declare -a shard1pod
 
 
 for i in {1..3}; do
-    echo $shardpod-$i
+    shard1pod[i]=`kubectl exec ${shardpod}-${i} -c mongodshardcontainer -- bash -c 'hostname -i'`
+done
+
+for x in shard1pod; do
+    echo $x
 done
