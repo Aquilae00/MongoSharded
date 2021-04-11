@@ -11,6 +11,6 @@ for i in {0..2}; do
     shard1pod[i]=`kubectl exec ${shardpod}-${i} -c mongodshardcontainer -- bash -c 'hostname -i'`
 done
 
-for x in shard1pod; do
+for x in ${shard1pod[*]}; do
     echo $x
 done
