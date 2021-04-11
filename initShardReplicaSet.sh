@@ -19,7 +19,7 @@ echo Adding replica hostnames to the shard
 
 
 replicasetInit() {
-    kubectl exec ${shardpod}-0 -c mongodshardcontainer -- mongo --eval 'rs.initiate({_id:"mongoreplicaset1shard",members:[{_id:0,host:\"${shard1pod[0]}\"},{_id:1,host:\"${shard1pod[1]}\"},{_id:2,host:\"${shard1pod[2]}\"}]})'
+    kubectl exec ${shardpod}-0 -c mongodshardcontainer -- mongo --eval `rs.initiate({_id:"mongoreplicaset1shard",members:[{_id:0,host:"${shard1pod[0]}"},{_id:1,host:"${shard1pod[1]}"},{_id:2,host:"${shard1pod[2]}"}]})`
 }
 
 replicasetInit
