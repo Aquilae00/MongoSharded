@@ -2,24 +2,24 @@ echo Enter config Pod Name:
 
 read configpod
 
-echo You selected $shardpod
+echo You selected $configpod
 
-declare -a shard1pod
+declare -a config1pod
 
 
 for i in {0..2}; do
-    shard1pod[i]=`kubectl exec ${configpod}-${i} -c mongodconfigcontainer -- bash -c 'hostname -i'`
+    config1pod[i]=`kubectl exec ${configpod}-${i} -c mongodconfigcontainer -- bash -c 'hostname -i'`
 done
 
-for x in ${shard1pod[*]}; do
+for x in ${config1pod[*]}; do
     echo $x
 done
 
-echo Adding replica hostnames to the shard
+echo Adding replica hostnames to the config
 
 
 replicasetInit() {
-    kubectl exec ${shardpod}-0 -c mongodshardcontainer -- mongo --eval 'rs.initiate({_id:"mongoreplicaset1config",configsvr:true,members:[{_id:0,host:"'${shard1pod[0]}':27017"},{_id:1,host:"'${shard1pod[1]}':27017"},{_id:2,host:"'${shard1pod[2]}':27017"}]})'
+    kubectl exec ${configpod}-0 -c mongodconfigcontainer -- mongo --eval 'rs.initiate({_id:"mongoreplicaset1config",configsvr:true,members:[{_id:0,host:"'${config1pod[0]}':27017"},{_id:1,host:"'${config1pod[1]}':27017"},{_id:2,host:"'${config1pod[2]}':27017"}]})'
 }
 
 replicasetInit
