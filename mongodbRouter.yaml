@@ -36,7 +36,7 @@ spec:
           command:
             - "mongos"
             - "--configdb"
-            - "mongoreplicaset1config/10.43.1.85:27017,10.43.1.86:27017,10.43.1.87:27017"
+            - "mongoreplicaset1config/10.43.0.146:27017,10.43.0.154:27017,10.43.0.146:27017"
             - "--bind_ip_all"
             - "--port"
             - "27017"
